@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  prometheus:
+    build:
+      context: prometheus/.
+    image: csw/prometheus
+    container_name: "csw-prometheus"
+    volumes:
+#       - /Users/csw/docker-volumes/prometheus/etc:/etc/prometheus
+       - csw-prometheus-data:/prometheus
+#      - /Users/csw/docker-volumes/prometheus:/prometheus
+#      - /Users/csw/docker-volumes/prometheus/etc:/prometheus/etc
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 9091:9090
+    networks:
+      - csw-stats-bridge
+
+  grafana:
+    build:
+      context: grafana/.
+    image: csw/grafana
+    depends_on:
+      - prometheus
+    container_name: "csw-grafana"
+    volumes:
+#       - /Users/csw/docker-volumes/grafana/etc:/etc/grafana
+#       - /Users/csw/docker-volumes/grafana/var:/var/lib/grafana
+       - csw-grafana-data:/grafana
+#    environment:
+#      GF_SECURITY_ADMIN_PASSWORD: "pw"
+#      GF_PATHS_CONFIG: "/etc/grafana/grafana.ini"
+    ports:
+      - 3334:3000
+    networks:
+      - csw-stats-bridge
+
+volumes:
+  csw-prometheus-data:
+  csw-grafana-data:
+
+networks:
+  csw-stats-bridge:
+
