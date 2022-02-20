@@ -16,11 +16,18 @@ public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 60000)
+    @Autowired
+    private MeterRegistry meterRegistry;
+
+    @Scheduled(fixedRate = 30000)
     public void reportCurrentTime() {
         System.out.println("Firing main schedule");
-        Poster p = new Poster("Test1", 5, 10);
+        Poster p = new Poster(meterRegistry, "Test1", 5, 40);
         new Thread(p).start();
+
+        Poster p2 = new Poster(meterRegistry, "Test2", 10, 60);
+        new Thread(p2).start();
+
         System.out.println("Ending main schedule");
     }
 }

@@ -1,0 +1,1 @@
+irate(questionnaire_duration_seconds_sum{subject_code=~"$subject_code"}[1m]) / irate(questionnaire_duration_seconds_count{subject_code=~"$subject_code"}[1m])
