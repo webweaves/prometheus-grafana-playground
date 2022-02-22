@@ -22,12 +22,13 @@ public class ScheduledTasks {
     @Scheduled(fixedRate = 30000)
     public void reportCurrentTime() {
         System.out.println("Firing main schedule");
-        Poster p = new Poster(meterRegistry, "Test1", 5, 40);
+        Poster p = new Poster(meterRegistry, "DEV-001", 1, 60);
         new Thread(p).start();
 
-        Poster p2 = new Poster(meterRegistry, "Test2", 10, 60);
+        Poster p2 = new Poster(meterRegistry, "User2", 5, 150);
         new Thread(p2).start();
 
         System.out.println("Ending main schedule");
     }
+
 }

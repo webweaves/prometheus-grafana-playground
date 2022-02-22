@@ -1,1 +1,3 @@
-irate(questionnaire_duration_seconds_sum{subject_code=~"$subject_code"}[1m]) / irate(questionnaire_duration_seconds_count{subject_code=~"$subject_code"}[1m])
+irate(questionnaire_duration_seconds_sum{subject_code=~"$subject_code",questionnaire_code="Smoking"}[1m])/irate(questionnaire_duration_seconds_count{subject_code=~"$subject_code",questionnaire_code="Smoking"}[1m])
+
+Create variable with following: label_values(subject_code)
