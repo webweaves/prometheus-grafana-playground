@@ -27,11 +27,11 @@ services:
 #       - /Users/csw/docker-volumes/grafana/etc:/etc/grafana
 #       - /Users/csw/docker-volumes/grafana/var:/var/lib/grafana
        - csw-grafana-data:/grafana
-#    environment:
-#      GF_SECURITY_ADMIN_PASSWORD: "pw"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "pw"
 #      GF_PATHS_CONFIG: "/etc/grafana/grafana.ini"
     ports:
-      - 3334:3000
+      - 3333:3333
     networks:
       - csw-stats-bridge
 
